@@ -16,9 +16,11 @@ export default function BlogPost({ frontMatter, content }) {
 
 export async function getStaticPaths() {
   const files = fs.readdirSync(path.join('content', 'blog'));
-  const paths = files.map(filename => ({
-    params: { slug: filename.replace('.md', '') }
+
+  const paths = files.map((filename) => ({
+    params: { slug: filename.replace('.md', '') },
   }));
+
   return { paths, fallback: false };
 }
 
@@ -27,5 +29,6 @@ export async function getStaticProps({ params }) {
   const fileContent = fs.readFileSync(filePath, 'utf-8');
   const { data: frontMatter, content } = matter(fileContent);
   const mdxContent = await serialize(content);
+
   return { props: { frontMatter, content: mdxContent } };
 }

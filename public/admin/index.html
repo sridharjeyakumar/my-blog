@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Blog CMS</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decap CMS</title>
 </head>
 <body>
-  <script src="https://unpkg.com/@staticcms/core@^3.0.0/dist/static-cms-core.js"></script>
+  <script src="https://unpkg.com/netlify-cms-app/dist/netlify-cms.js"></script>
   <script>
-    CMS.init({ config: "config.yml" });
+    CMS.init({ config: "/admin/config.yml" });
   </script>
 </body>
 </html>
