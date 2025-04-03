@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Decap CMS</title>
 </head>
 <body>
-  <script src="https://unpkg.com/netlify-cms-app@2.15.71/dist/netlify-cms-app.js"></script>
+  <!-- Use the new Decap CMS package -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       if (window.CMS) {
-        window.CMS.init({ config: "/admin/config.yml" });
+        CMS.init({ config: "/admin/config.yml" });
       } else {
         console.error("Decap CMS failed to load.");
       }
@@ -18,5 +19,3 @@
   </script>
 </body>
 </html>
-
-
