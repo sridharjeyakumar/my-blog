@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -15,17 +17,26 @@ export default function BlogPost({ frontMatter, content }) {
 }
 
 export async function getStaticPaths() {
-  const files = fs.readdirSync(path.join('content', 'blog'));
+  const blogDir = path.join(process.cwd(), 'content', 'blog');
+  if (!fs.existsSync(blogDir)) {
+    return { paths: [], fallback: false };
+  }
 
+  const files = fs.readdirSync(blogDir);
   const paths = files.map((filename) => ({
     params: { slug: filename.replace('.md', '') },
   }));
 
-  return { paths, fallback: false };
+  return { paths, fallback: false }; // Ensures no 404 error
 }
 
 export async function getStaticProps({ params }) {
-  const filePath = path.join('content', 'blog', `${params.slug}.md`);
+  const filePath = path.join(process.cwd(), 'content', 'blog', `${params.slug}.md`);
+
+  if (!fs.existsSync(filePath)) {
+    return { notFound: true };
+  }
+
   const fileContent = fs.readFileSync(filePath, 'utf-8');
   const { data: frontMatter, content } = matter(fileContent);
   const mdxContent = await serialize(content);
