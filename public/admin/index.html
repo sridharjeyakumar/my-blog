@@ -8,12 +8,15 @@
 <body>
   <script src="https://unpkg.com/netlify-cms-app@2.15.71/dist/netlify-cms-app.js"></script>
   <script>
-    if (window.CMS) {
-      window.CMS.init({ config: "/admin/config.yml" });
-    } else {
-      console.error("Decap CMS failed to load.");
-    }
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.CMS) {
+        window.CMS.init({ config: "/admin/config.yml" });
+      } else {
+        console.error("Decap CMS failed to load.");
+      }
+    });
   </script>
 </body>
 </html>
+
 
